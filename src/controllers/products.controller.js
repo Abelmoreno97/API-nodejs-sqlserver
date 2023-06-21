@@ -7,3 +7,7 @@ export const getProducts = async (req,res) => {
     console.log(result);
     res.json(result.recordset)
 };
+
+export const createNewProduct = (req, res) => {
+    res.json('new product')
+}
