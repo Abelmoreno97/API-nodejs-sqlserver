@@ -1,12 +1,11 @@
-import express from "express"
-import config from './config'
-import productRoutes from './routes/product.routes'
+import express from "express";
+import config from "./config";
+import productRoutes from "./routes/product.routes";
 
-const app = express()
+const app = express();
 
+app.set("port", config.port);
 
-app.set('port', config.port)
+app.use(productRoutes);
 
-app.use(productRoutes)
-
-export default app
+export default app;
