@@ -60,3 +60,34 @@ export const deleteProductById = async (req, res) => {
 const message = `the product id ${id} was deleted`
   res.send(message);
 }
+
+export const getTotalProducts = async (req, res) => {
+
+  try {
+    const pool = await getConnection();
+  const result = await pool.request().query(queries.countProducts);
+  res.json(result.recordset[0]['']);
+  } catch (error) {
+    res.status(500)
+    res.send(error.message);
+  }
+};
+
+export const UpdateProductsById = async (req, res) => {
+  const { name, description, quantity } = req.body;
+  const { id } = req.params
+  if (name == null || description == null || quantity == null){
+    return res.status(400).json({msg: 'Bad Request. Please fill all fields'})
+  }
+
+  const pool = await getConnection();
+  await pool.request()
+  .input("name", sql.VarChar, name )
+  .input("description", sql.Text, description)
+  .input("quantity", sql.Int, quantity)
+  .input('id', sql.Int, id)
+  .query(queries.updateProductById)
+
+  res.json({name, description, quantity})
+
+}
