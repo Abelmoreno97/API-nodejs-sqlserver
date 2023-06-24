@@ -5,5 +5,6 @@ export const queries = {
     getProductById: "SELECT * FROM Products WHERE Id = @Id",
     deleteProduct: 'DELETE FROM [abeldb].[dbo].[Products] WHERE Id = @Id',
     countProducts: "SELECT COUNT(*) FROM Products",
-    updateProductById: 'UPDATE Products SET Name = @name, Description = @description, Quantity = @quantity WHERE Id = @Id'
+    updateProductById: 'UPDATE Products SET Name = @name, Description = @description, Quantity = @quantity WHERE Id = @Id',
+    deleteAllProducts: 'DELETE FROM Products'
 }
