@@ -47,9 +47,9 @@ export const getProductById = async (req, res) => {
     .input("Id", id)
     .query(queries.getProductById);
   if (result.recordset[0] == null) {
-    res.send(`The product id ${id} is empty`);
+    res.send([{id: 0, Name: 'not found', Description: '', Quantity: 0}]);
   } else {
-    res.send(result.recordset[0]);
+    res.send([result.recordset[0]]);
   }
 };
 
@@ -74,7 +74,7 @@ export const getTotalProducts = async (req, res) => {
   try {
     const pool = await getConnection();
     const result = await pool.request().query(queries.countProducts);
-    res.json(`Total products quantity : ${result.recordset[0][""]}`);
+    res.json(`${result.recordset[0][""]}`);
   } catch (error) {
     res.status(500);
     res.send(error.message);
