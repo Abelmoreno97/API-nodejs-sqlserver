@@ -47,7 +47,7 @@ export const getProductById = async (req, res) => {
     .input("Id", id)
     .query(queries.getProductById);
   if (result.recordset[0] == null) {
-    res.send([{id: 0, Name: 'not found', Description: '', Quantity: 0}]);
+    res.send([]);
   } else {
     res.send([result.recordset[0]]);
   }
